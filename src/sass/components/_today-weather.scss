@@ -1,0 +1,99 @@
+.location {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.current-date {
+
+}
+
+.weather-degree {
+  font-size: 115px;
+}
+
+.feels-like-weather {
+  font-size: 20px;
+}
+
+.humidity {
+  font-size: 17px;
+}
+
+.square {
+	align-items: center;
+	display: flex;
+	height: 400px;
+	justify-content: center;
+	position: relative;
+	width: 400px;
+}
+
+.square span {
+	animation-iteration-count: infinite;
+	animation-name: animate;
+	animation-timing-function: linear;
+	border: 2px solid #ffffff;
+	border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: background-color 0.5s ease;
+	width: 100%;
+	z-index: 1;
+}
+
+.square:hover span,
+.square:focus span,
+.square:active span {
+	background-color: rgba(255, 0, 0, 0.2);
+	border-style: none;
+}
+
+.square span:nth-child(1) {
+	animation-duration: 6s;
+}
+
+.square span:nth-child(2) {
+	animation-duration: 4s;
+}
+
+.square span:nth-child(3) {
+	animation-duration: 10s;
+}
+
+.square .content {
+	color: #ffffff;
+	padding: 40px 60px;
+	position: relative;
+	text-align: center;
+	transition: 0.5s ease all;
+	z-index: 2;
+}
+
+.square .content a {
+	border: 2px solid #ffffff;
+	border-radius: 73% 27% 44% 56% / 49% 44% 56% 51%;
+	color: #ffffff;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 10px;
+	padding: 6px 18px;
+	position: relative;
+	text-decoration: none;
+	transition: background-color 0.3s ease,
+							color 0.3s ease;
+}
+
+.square .content a:hover,
+.square .content a:focus,
+.square .content a:active {
+	background-color: #ffffff;
+	color: #333333;
+}
+
+@keyframes animate {
+	to {
+		transform: rotateZ(1turn);
+	}
+}
