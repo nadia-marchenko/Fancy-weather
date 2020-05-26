@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TodayWeather from './TodayWeather';
+import LocationComponent from './LocationComponent';
+import WeatherNextDaysComponent from './WeatherNextDaysComponent';
 
 class PageComponent extends Component {
   render() {
@@ -12,11 +14,15 @@ class PageComponent extends Component {
         <ControlBlock/>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} sm={12}>
             <TodayWeather/>
+            </Col>
+            <Col lg={6} sm={12}>
+              <LocationComponent/>
             </Col>
           </Row>
         </Container>
+        <WeatherNextDaysComponent/>
       </>
     );
   }

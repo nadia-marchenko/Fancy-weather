@@ -17,21 +17,19 @@ class TodayWeather extends Component {
         <Container>
           <Row>
             <Col>
-            <div class="square">
+            <div className="square">
 	            <span></span>
 	            <span></span>
 	            <span></span>
-              <div class="content">		
+              <div className="content">		
+                <object className="icon-weather" data="images/rainy-7.svg" type="image/svg+xml">Your browser does not support SVG</object>
+                <h5 className="text-weather">Possible light rain</h5>
 		            <p className="weather-degree">13°C</p>
                 <p className="feels-like-weather">LIKE 14°C</p>
                 <p className="humidity">Humidity: 73%</p>
+                <p className="humidity">Wind: 1 M/S</p>
 	            </div>
             </div>
-            </Col>
-            <Col>
-              <object class="icon" data="images/rainy-7.svg" type="image/svg+xml">Your browser does not support SVG</object>
-              <h5>Possible light rain</h5>
-              <h5>Wind: 1 M/S</h5>
             </Col>
           </Row>
         </Container>

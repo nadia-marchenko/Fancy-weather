@@ -1,9 +1,16 @@
 .control-block {
   margin-top: 50px;
-  // display: flex;
-  // justify-content: space-between;
 }
 
 .temperature-change-buttons {
   margin-left: 3px;
+}
+
+@media screen and (max-width: 600px) {
+  .search-block {
+    margin-top: 10px;
+  }
+  .main-buttons {
+    margin: o auto;
+  }
 }

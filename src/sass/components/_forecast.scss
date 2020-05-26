@@ -1,0 +1,13 @@
+.forecast-weather {
+  font-size: 30px;
+}
+
+.forecast {
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .day-weeks {
+    font-size: 17px;
+  }
+}

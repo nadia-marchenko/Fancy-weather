@@ -16,11 +16,11 @@ class ControlBlock extends Component {
   render() {
     return (
     <>
-      <div class="wrapper control-block">
+      <div className="control-block">
         <Container>
           <Row>
             <Col lg={4} xs={12} md={6}>
-              <div class="main-buttons">
+              <div className="main-buttons">
                 <Button variant="outline-secondary">Update</Button>{' '}
                 <DropdownButton as={ButtonGroup} title="LAN" id="dropdown-variants-Secondary" variant="outline-secondary">
                   <Dropdown.Item eventKey="1">EN</Dropdown.Item>
@@ -34,7 +34,7 @@ class ControlBlock extends Component {
               </div>
             </Col>
             <Col lg={{ span: 4, offset: 4 }} xs={12} md={6}>
-              <div class="search-block">
+              <div className="search-block">
                 <InputGroup className="mb-3">
                   <FormControl
                     placeholder="Search"
