@@ -7,7 +7,7 @@
     "style": "sass --watch sass/style.scss sass/style.css",
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "node server.js",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "heroku-postbuild": "webpack -p",
@@ -67,6 +67,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-yandex-maps": "^4.4.0",
     "swiper": "^5.3.8"
   },
   "keywords": []
