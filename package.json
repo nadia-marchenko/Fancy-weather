@@ -64,6 +64,7 @@
     "express": "^4.17.1",
     "fetch-mock": "^9.5.1",
     "node-fetch": "^2.6.0",
+    "node-ipinfo": "^1.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
