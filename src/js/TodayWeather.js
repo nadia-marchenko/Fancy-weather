@@ -9,11 +9,33 @@ function importAll(r) {
 importAll(require.context('../assets', true, /\.svg$/));
 
 class TodayWeather extends Component {
+  constructor() {
+    super();
+    let optionsForDate = { weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+    this.state = { 
+      city: 'Default',
+      date: new Date().toLocaleString('en-US', optionsForDate),
+    };
+  }
+
+  componentDidMount() {
+    fetch(`https://ipinfo.io/json?token=0add77f89947b1`)
+      .then(res => res.json())
+      .then(json => this.setState({ city: json.city }));
+    
+    let optionsForDate = { weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+    this.interval = setInterval(() => this.setState({ date: new Date().toLocaleString('en-US', optionsForDate) }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     return (
       <>
-        <h1 className="location">Minsk, Belarus</h1>
-        <p className="current-date lead">Mon 25 May 2020 15:09</p>
+        <h1 className="location">{this.state.city}, Belarus</h1>
+        <p className="current-date lead">{this.state.date}</p>
         <Container>
           <Row>
             <Col>

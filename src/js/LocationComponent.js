@@ -13,7 +13,12 @@ class LocationComponent extends Component {
 
   constructor() {
     super();
-    this.state = { city: 'Default' };
+    // let today = new Date(),
+    //         date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.now();
+    this.state = { 
+      city: 'Default',
+      time: Date.now()
+    };
   }
 
   // geocode(ymaps) {
@@ -74,6 +79,7 @@ class LocationComponent extends Component {
         <Image src="images/test-map.png" fluid/>
         <p className="coordinates">Latitude: 53°54', Longitude: 27°34'</p>
         <p>{this.state.city}</p>
+        <p>{this.state.time}</p>
       </div>
       </>
     );
