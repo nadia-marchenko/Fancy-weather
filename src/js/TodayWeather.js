@@ -73,6 +73,31 @@ class TodayWeather extends Component {
             </Col>
           </Row>
         </Container>
+        <Container className="forecast">
+        <Row>
+          <Col>
+            <h2 className="day-weeks">Tuesday</h2>
+            <p>
+              <span className="forecast-weather">13°C</span>
+              <object className="icon" data="images/rainy-3.svg" type="image/svg+xml">Your browser does not support SVG</object>
+            </p>
+          </Col>
+          <Col>
+            <h2 className="day-weeks">Wednesday</h2>
+            <p>
+              <span className="forecast-weather">15°C</span>
+              <object className="icon" data="images/rainy-6.svg" type="image/svg+xml">Your browser does not support SVG</object>
+            </p> 
+          </Col>
+          <Col>
+            <h2 className="day-weeks">Thursday</h2>
+            <p>
+              <span className="forecast-weather">12°C</span>
+              <object className="icon" data="images/rainy-1.svg" type="image/svg+xml">Your browser does not support SVG</object>
+            </p>
+          </Col>
+        </Row>
+      </Container>
       </>
     );
   }

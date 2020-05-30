@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TodayWeather from './TodayWeather';
 import LocationComponent from './LocationComponent';
-import WeatherNextDaysComponent from './WeatherNextDaysComponent';
 
 class PageComponent extends Component {
   render() {
@@ -22,7 +21,6 @@ class PageComponent extends Component {
             </Col>
           </Row>
         </Container>
-        <WeatherNextDaysComponent/>
       </>
     );
   }
