@@ -16,7 +16,7 @@ module.exports = (env, options) => {
         entry: ["babel-polyfill", "./src/index.js", "./src/sass/style.scss"],
         output: {
             path: path.join(__dirname, '/dist'),
-            filename: "script.js" 
+            filename: "script.js",
         },
 
         module: {
@@ -38,7 +38,14 @@ module.exports = (env, options) => {
                       ]
                   },
                   {
-                    test: /\.(png|ico|svg|jpe?g|gif)$/i,
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        'css-loader'
+                    ]
+                  },
+                  {
+                    test: /\.(png|ico|jpe?g|svg|gif)$/i,
                     use: [
                       {
                         loader: 'file-loader',
@@ -47,6 +54,22 @@ module.exports = (env, options) => {
                         }
                       },
                     ]
+                  },
+                  { 
+                    test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)([#?a-z0-9_\.-]+)$/, 
+                    use: [
+                      {
+                        loader: 'url-loader',
+                      },
+                    ],
+                  },
+                  { 
+                    test: /\.(woff|woff2|eot|ttf)$/, 
+                    use: [
+                      {
+                        loader: 'file-loader',
+                      },
+                    ],
                   },
                   {
                     test: /\.html$/,

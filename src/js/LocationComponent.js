@@ -78,8 +78,6 @@ class LocationComponent extends Component {
         </YMaps> */}
         <Image src="images/test-map.png" fluid/>
         <p className="coordinates">Latitude: 53°54', Longitude: 27°34'</p>
-        <p>{this.state.city}</p>
-        <p>{this.state.time}</p>
       </div>
       </>
     );
