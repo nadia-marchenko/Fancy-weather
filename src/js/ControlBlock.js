@@ -14,6 +14,9 @@ import Container from 'react-bootstrap/Container';
 
 class ControlBlock extends Component {
   render() {
+    let celsiumTypeDegree = 'celsium';
+    let farengeitTypeDegree = 'farengeit';
+
     return (
     <>
       <div className="control-block">
@@ -28,8 +31,10 @@ class ControlBlock extends Component {
                   <Dropdown.Item eventKey="2">BE</Dropdown.Item>
                 </DropdownButton>
                 <Dropdown as={ButtonGroup} variant="outline-secondary" className="temperature-change-buttons">
-                  <Button variant="outline-secondary">°C</Button>
-                  <Button variant="outline-secondary">°F</Button>
+                  <Button variant="outline-secondary" onClick={() => { this.props.toCelsium(celsiumTypeDegree)}}>°C</Button>
+                  <Button variant="outline-secondary" onClick={() => { 
+                    this.props.toCelsium(farengeitTypeDegree)
+                    }}>°F</Button>
                 </Dropdown>
               </div>
             </Col>

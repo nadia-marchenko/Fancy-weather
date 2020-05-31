@@ -7,14 +7,24 @@ import TodayWeather from './TodayWeather';
 import LocationComponent from './LocationComponent';
 
 class PageComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      typeDegree: 'celsium'
+    }
+    this.toCelsium = (value) => {
+      this.setState({ typeDegree: value })
+    }
+  }
+
   render() {
     return (
       <>
-        <ControlBlock/>
+        <ControlBlock toCelsium = {this.toCelsium}/>
         <Container>
           <Row>
             <Col lg={6} sm={12}>
-            <TodayWeather/>
+            <TodayWeather degreeType = {this.state.typeDegree}/>
             </Col>
             <Col lg={6} sm={12}>
               <LocationComponent/>

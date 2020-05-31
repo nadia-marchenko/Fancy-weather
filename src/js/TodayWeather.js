@@ -15,7 +15,7 @@ class TodayWeather extends Component {
     this.state = { 
       date: new Date(),
       city: 'Default',
-      nowDegree: '0',
+      celsiumNowDegree: '0',
       feelsLikeWeather: '0',
       humidity: '0',
       wind: '0',
@@ -49,7 +49,7 @@ class TodayWeather extends Component {
       .then(weatherResponse => 
         this.setState({ 
           city: cityResponse.city, 
-          nowDegree: Math.ceil(weatherResponse.list[0].main.temp), 
+          celsiumNowDegree: Math.ceil(weatherResponse.list[0].main.temp),
           feelsLikeWeather: Math.ceil(weatherResponse.list[0].main.feels_like),
           humidity: weatherResponse.list[0].main.humidity,
           wind: weatherResponse.list[0].wind.speed,
@@ -82,8 +82,17 @@ class TodayWeather extends Component {
     clearInterval(this.interval);
   }
 
+  toFarengeit(degreeInCelsium) {
+    return Math.ceil((degreeInCelsium * 1.8) + 32);
+  }
+
   render() {
     let optionsForDate = { weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+    let farengeitNowDegree = this.toFarengeit(this.state.celsiumNowDegree);
+    let farengeitFirstDayForecat = this.toFarengeit(this.state.firstDayForecastWeather);
+    let farengeitSecondDayForecat = this.toFarengeit(this.state.secondDayForecastWeather);
+    let farengeitThirdDayForecat = this.toFarengeit(this.state.thirdDayForecastWeather);
+    let farengeitFeelsLikeWeather = this.toFarengeit(this.state.feelsLikeWeather);
 
     return (
       <>
@@ -100,8 +109,8 @@ class TodayWeather extends Component {
                 <WeatherIcon name="owm" className='icon-weather icon' iconId={this.state.img.toString()} flip="horizontal" rotate="90" fixedWidth={true}/>
                 {/* <object className="icon-weather" data="images/rainy-7.svg" type="image/svg+xml">Your browser does not support SVG</object>  */}
                 <h5 className="text-weather">{this.state.summary}</h5>
-                <p className="weather-degree">{this.state.nowDegree}°C</p>
-                <p className="feels-like-weather">LIKE: {this.state.feelsLikeWeather}°C</p>
+                <p className="weather-degree">{ this.props.degreeType == 'celsium' ? this.state.celsiumNowDegree + '°C' : farengeitNowDegree + '°F'}</p>
+                <p className="feels-like-weather">LIKE: { this.props.degreeType == 'celsium' ? this.state.feelsLikeWeather + '°C' : farengeitFeelsLikeWeather + '°F'}</p>
                 <p className="humidity">Humidity: {this.state.humidity}%</p>
                 <p className="humidity">Wind: {this.state.wind} M/S</p>
 	            </div>
@@ -113,9 +122,8 @@ class TodayWeather extends Component {
         <Row>
           <Col>
             <h2 className="day-weeks">{this.state.firstDayForecast.toLocaleString('en-US', { weekday: 'long' })}</h2>
-            {/* <h2 className="day-weeks">Wednesday</h2> */}
             <p>
-              <span className="forecast-weather">{this.state.firstDayForecastWeather}°C</span>
+              <span className="forecast-weather">{ this.props.degreeType == 'celsium' ? this.state.firstDayForecastWeather + '°C' : farengeitFirstDayForecat + '°F'}</span>
               <WeatherIcon name="owm" className='icon icon-weather icon-forecast' iconId={this.state.firstDayForecastImg.toString()} flip="horizontal" rotate="270"/>
               {/* <object className="icon" data="images/rainy-3.svg" type="image/svg+xml">Your browser does not support SVG</object> */}
             </p>
@@ -123,7 +131,7 @@ class TodayWeather extends Component {
           <Col>
             <h2 className="day-weeks">{this.state.secondDayForecast.toLocaleString('en-US', { weekday: 'long' })}</h2>
             <p>
-              <span className="forecast-weather">{this.state.secondDayForecastWeather}°C</span>
+              <span className="forecast-weather">{ this.props.degreeType == 'celsium' ? this.state.secondDayForecastWeather + '°C' : farengeitSecondDayForecat + '°F'}</span>
               <WeatherIcon name="owm" className='icon icon-weather icon-forecast' iconId={this.state.secondDayForecastImg.toString()} flip="horizontal" rotate="270"/>
               {/* <object className="icon" data="images/rainy-6.svg" type="image/svg+xml">Your browser does not support SVG</object> */}
             </p> 
@@ -131,7 +139,7 @@ class TodayWeather extends Component {
           <Col>
             <h2 className="day-weeks">{this.state.thirdDayForecast.toLocaleString('en-US', { weekday: 'long' })}</h2>
             <p>
-              <span className="forecast-weather">{this.state.thirdDayForecastWeather}°C</span>
+              <span className="forecast-weather">{ this.props.degreeType == 'celsium' ? this.state.thirdDayForecastWeather + '°C' : farengeitThirdDayForecat + '°F'}</span>
               <WeatherIcon name="owm" className='icon icon-weather icon-forecast' iconId={this.state.thirdDayForecastImg.toString()} flip="horizontal" rotate="270"/>
               {/* <object className="icon" data="images/rainy-1.svg" type="image/svg+xml">Your browser does not support SVG</object> */}
             </p>
