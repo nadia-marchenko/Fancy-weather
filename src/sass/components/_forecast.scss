@@ -6,8 +6,17 @@
   margin-top: 20px;
 }
 
+.icon-forecast {
+  margin-top: -30px;
+  margin-left: 76px;
+}
+
 @media screen and (max-width: 600px) {
   .day-weeks {
     font-size: 17px;
+  }
+  .icon-forecast {
+    margin-top: 5px;
+    margin-left: 5px;
   }
 }
