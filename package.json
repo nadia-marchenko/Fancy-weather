@@ -76,6 +76,7 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-icons-weather": "^1.0.5",
+    "react-map-gl": "^5.2.5",
     "react-yandex-maps": "^4.4.0",
     "swiper": "^5.3.8"
   },
