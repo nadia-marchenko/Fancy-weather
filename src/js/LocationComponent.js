@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import ReactMapGL, { GeolocateControl, NavigationControl} from 'react-map-gl';
+import ReactMapGL, { GeolocateControl, NavigationControl, Marker} from 'react-map-gl';
 // Import images
 function importAll(r) {
   r.keys().forEach(r);
 }
-importAll(require.context('../assets', true, /\.png$/));
+importAll(require.context('../assets', true, /\.svg$/));
 
 class LocationComponent extends Component {
 
@@ -74,15 +74,14 @@ class LocationComponent extends Component {
   render() {
     const geolocateStyle = {
       float: "left",
-      margin: "10px",
-      borderRadius: '7%'
+      margin: "10px"
     };
 
     return (
       <>
       <div className="location-block">
         <ReactMapGL 
-        style={{margin: '0 auto'}}
+        style={{margin: '0 auto', borderRadius: '7%'}}
         {...this.state.viewport}
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={'pk.eyJ1Ijoia3JvdG9rb24iLCJhIjoiY2thd2R0YTU1MDR0ZDJ5bXpyd2lidmVkZSJ9.gKBq_wdxx-DJ4FH6aHbj8Q'}
@@ -95,6 +94,9 @@ class LocationComponent extends Component {
         <div style={{position: 'absolute', right: 0}}>
           <NavigationControl />
         </div>
+        <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} offsetLeft={-20} offsetTop={-30}>
+          <img src='images/location.svg' alt='Location Icon'></img>
+        </Marker>
         </ReactMapGL>
         {/* <Image src="images/test-map.png" fluid/> */}
         <p className="coordinates">Latitude: {this.toNormalView(this.state.viewport.latitude)}, Longitude: {this.toNormalView(this.state.viewport.longitude)}</p>

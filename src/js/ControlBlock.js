@@ -45,25 +45,27 @@ class ControlBlock extends Component {
                 </DropdownButton>
                 <Dropdown as={ButtonGroup} variant="outline-secondary" className="temperature-change-buttons">
                   <Button variant="outline-secondary" onClick={() => { this.props.toCelsium(celsiumTypeDegree)}}>°C</Button>
-                  <Button variant="outline-secondary" onClick={() => { 
-                    this.props.toCelsium(farengeitTypeDegree)
-                    }}>°F</Button>
+                  <Button variant="outline-secondary" onClick={() => { this.props.toCelsium(farengeitTypeDegree)}}>°F</Button>
                 </Dropdown>
               </div>
             </Col>
             <Col lg={{ span: 4, offset: 4 }} xs={12} md={6}>
               <div className="search-block">
-                <InputGroup className="mb-3" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}>
-                  <FormControl
-                    placeholder="Search"
-                    type="search"
-                    aria-label="Search"
-                    aria-describedby="basic-addon2"
-                  />
-                  <InputGroup.Append>
-                    <Button variant="outline-secondary" type='submit' onClick={() => { this.props.updateInputValue(this.state.inputValue)}}>Search</Button>
-                  </InputGroup.Append>
-                </InputGroup>
+                <Form>
+                  <InputGroup className="mb-3" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}>
+                    <FormControl
+                      placeholder="Search"
+                      type="search"
+                      aria-label="Search"
+                      aria-describedby="basic-addon2"
+                    />
+                      <Button variant="outline-secondary" type='submit' onClick={() => { 
+                        this.props.updateInputValue(this.state.inputValue); 
+                        this.props.updateBackground()}}>
+                          Search
+                      </Button>{' '}
+                  </InputGroup>
+                </Form>
               </div>
             </Col>
           </Row>
