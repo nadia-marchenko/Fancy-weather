@@ -13,6 +13,19 @@ import Container from 'react-bootstrap/Container';
 
 
 class ControlBlock extends Component {
+  constructor() {
+    super();
+    this.state = {
+      inputValue: ''
+    };
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+  }
+
   render() {
     let celsiumTypeDegree = 'celsium';
     let farengeitTypeDegree = 'farengeit';
@@ -40,14 +53,15 @@ class ControlBlock extends Component {
             </Col>
             <Col lg={{ span: 4, offset: 4 }} xs={12} md={6}>
               <div className="search-block">
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-3" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}>
                   <FormControl
                     placeholder="Search"
+                    type="search"
                     aria-label="Search"
                     aria-describedby="basic-addon2"
                   />
                   <InputGroup.Append>
-                    <Button variant="outline-secondary">Search</Button>
+                    <Button variant="outline-secondary" type='submit' onClick={() => { this.props.updateInputValue(this.state.inputValue)}}>Search</Button>
                   </InputGroup.Append>
                 </InputGroup>
               </div>

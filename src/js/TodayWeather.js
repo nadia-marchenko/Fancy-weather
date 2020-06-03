@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import WeatherIcon from 'react-icons-weather';
+import * as CountryNames from '../CountryNameLongForm.json';
 // Import images
 function importAll(r) {
   r.keys().forEach(r);
@@ -10,11 +11,12 @@ function importAll(r) {
 importAll(require.context('../assets', true, /\.svg$/));
 
 class TodayWeather extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { 
       date: new Date(),
       city: 'Default',
+      country : 'Default',
       celsiumNowDegree: '0',
       feelsLikeWeather: '0',
       humidity: '0',
@@ -38,17 +40,35 @@ class TodayWeather extends Component {
     return (new Date(new Date().setDate(new Date().getDate() + numDays)));
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({ city: nextProps.inputValue});
+    // this.getCountryName(nextProps.inputValue);
+    this.getWeatherData(nextProps.inputValue);
+  }
+
   componentDidMount() {
     this.interval = setInterval(() => this.setState({ date: new Date() }), 1000);
  
     fetch(`https://ipinfo.io/json?token=0add77f89947b1`)
     .then(res => res.json())
-    .then(cityResponse => 
-      fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityResponse.city}&lang=en&units=metric&APPID=33ecad8be411fae2e033205ca91551fb`)
+    .then(cityResponse => {
+      this.getWeatherData(cityResponse.city);
+      this.getCountryName(cityResponse.country);
+    }
+    );
+  }
+
+  getCountryName(countryShortForm) {
+    this.setState({country : CountryNames.default[countryShortForm]});
+  }
+
+  getWeatherData(cityResponse) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityResponse}&lang=en&units=metric&APPID=33ecad8be411fae2e033205ca91551fb`)
       .then(res => res.json())
       .then(weatherResponse => 
         this.setState({ 
-          city: cityResponse.city, 
+          city: cityResponse,
+          country: CountryNames.default[weatherResponse.city.country],
           celsiumNowDegree: Math.ceil(weatherResponse.list[0].main.temp),
           feelsLikeWeather: Math.ceil(weatherResponse.list[0].main.feels_like),
           humidity: weatherResponse.list[0].main.humidity,
@@ -65,7 +85,6 @@ class TodayWeather extends Component {
         .catch(err => {
           console.log('Error happened during fetching!', err);
         })
-    );
   }
 
   averageWeather(weatherResponse, date) {
@@ -99,7 +118,7 @@ class TodayWeather extends Component {
 
     return (
       <>
-        <h1 className="location">{this.state.city}, Belarus</h1>
+        <h1 className="location">{this.state.city}, {this.state.country}</h1>
         <p className="current-date lead">{this.state.date.toLocaleString('en-US', optionsForDate)}</p>
         <Container>
           <Row>

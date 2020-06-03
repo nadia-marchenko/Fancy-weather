@@ -8,8 +8,8 @@ importAll(require.context('../assets', true, /\.png$/));
 
 class LocationComponent extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { 
       city: 'Default',
       time: Date.now(),
@@ -26,21 +26,56 @@ class LocationComponent extends Component {
   componentDidMount() {
     fetch(`https://ipinfo.io/json?token=0add77f89947b1`)
       .then(res => res.json())
-      .then(json => this.setState({ 
-        city: json.city ,
-        latitude: json.loc.slice(0,5),
-        longitude: json.loc.slice(8,13)
-      }));
+      .then(json => { 
+        this.setState({ 
+        city: json.city,
+        viewport : {
+          width: 290,
+          height: 420,
+          latitude: Number(json.loc.slice(0,7)),
+          longitude: Number(json.loc.slice(8,15)),
+          zoom: 8
+        }
+      });
+    }
+      )
+      .catch(err => {
+        console.log('Error happened during fetching!', err);
+      });
   }
 
-toNormalView(num) {
-  return `${Math.trunc(num)}°${num.toString().split('.')[1].slice(0,2)}'`;
-}
+  componentWillReceiveProps(nextProps){
+    this.setState({ city: nextProps.inputValue});
+    this.showSearchResults(nextProps.inputValue);
+  }
+
+  showSearchResults(city) {
+    fetch(`https://api.opencagedata.com/geocode/v1/json?key=61c78d0a8ef5447485dc73627934d616&q=${city}&pretty=1`)
+      .then(res => res.json())
+      .then(json => this.setState({
+        viewport : {
+          width: 290,
+          height: 420,
+          latitude: json.results[0].geometry.lat,
+          longitude: json.results[0].geometry.lng,
+          zoom: 8
+        },
+        city: this.props.inputValue,
+      }))
+      .catch(err => {
+        console.log('Error happened during fetching!', err);
+      });
+  }
+ 
+  toNormalView(num) {
+    return `${Math.trunc(num)}°${num.toString().split('.')[1].slice(0,2)}'`;
+  }
 
   render() {
     const geolocateStyle = {
       float: "left",
-      margin: "10px"
+      margin: "10px",
+      borderRadius: '7%'
     };
 
     return (

@@ -11,7 +11,9 @@ class PageComponent extends Component {
     super();
     this.state = {
       typeDegree: 'celsium',
-      backgroundImg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80'
+      backgroundImg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80',
+      inputValue: 'Minsk',
+      country: 'Default'
     }
     this.toCelsium = (value) => {
       this.setState({ typeDegree: value })
@@ -30,6 +32,13 @@ class PageComponent extends Component {
         .catch(err => {
           console.log('Error happened during fetching!', err);
         });
+    }
+    this.updateInputValue = (value) => {
+      this.setState({inputValue : value});
+    }
+
+    this.updateCountry = (value) => {
+      this.setState({country: value});
     }
   }
 
@@ -53,14 +62,14 @@ class PageComponent extends Component {
     return (
       <>
       <Helmet bodyAttributes={{style: `background : linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${this.state.backgroundImg}); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover;`}}/>
-        <ControlBlock toCelsium = {this.toCelsium} updateBackground = {this.updateBackground}/>
+        <ControlBlock toCelsium = {this.toCelsium} updateBackground = {this.updateBackground} updateInputValue = {this.updateInputValue}/>
         <Container>
           <Row>
             <Col lg={6} sm={12}>
-            <TodayWeather degreeType = {this.state.typeDegree} />
+            <TodayWeather degreeType = {this.state.typeDegree} inputValue = {this.state.inputValue} />
             </Col>
             <Col lg={6} sm={12}>
-              <LocationComponent/>
+              <LocationComponent inputValue = {this.state.inputValue} />
             </Col>
           </Row>
         </Container>
