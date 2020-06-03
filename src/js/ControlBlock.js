@@ -58,9 +58,10 @@ class ControlBlock extends Component {
                       aria-label="Search"
                       aria-describedby="basic-addon2"
                     />
-                      <Button variant="outline-secondary" type='submit' onClick={() => {
+                      <Button variant="outline-secondary" type='submit' onClick={(event) => {
                         this.props.updateInputValue(this.state.inputValue);
                         this.props.updateBackground();
+                        event.preventDefault();
                       }}>
                           Search
                       </Button>{' '}
