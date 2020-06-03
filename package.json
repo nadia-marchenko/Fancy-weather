@@ -75,10 +75,13 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "react-icons-weather": "^1.0.5",
     "react-map-gl": "^5.2.5",
+    "react-unsplash-wrapper": "^1.1.5",
     "react-yandex-maps": "^4.4.0",
-    "swiper": "^5.3.8"
+    "swiper": "^5.3.8",
+    "unsplash-js": "^6.0.0"
   },
   "keywords": []
 }

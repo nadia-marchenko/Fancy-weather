@@ -24,7 +24,7 @@ class ControlBlock extends Component {
           <Row>
             <Col lg={4} xs={12} md={6}>
               <div className="main-buttons">
-                <Button variant="outline-secondary">Update</Button>{' '}
+                <Button variant="outline-secondary" onClick={() => { this.props.updateBackground()}}>Update</Button>{' '}
                 <DropdownButton as={ButtonGroup} title="LAN" id="dropdown-variants-Secondary" variant="outline-secondary">
                   <Dropdown.Item eventKey="1">EN</Dropdown.Item>
                   <Dropdown.Item eventKey="2">RU</Dropdown.Item>

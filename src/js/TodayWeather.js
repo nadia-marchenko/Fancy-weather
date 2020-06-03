@@ -62,6 +62,9 @@ class TodayWeather extends Component {
           secondDayForecastImg: this.getForecastImg(weatherResponse, this.state.secondDayForecast),
           thirdDayForecastImg: this.getForecastImg(weatherResponse, this.state.thirdDayForecast)
         }))
+        .catch(err => {
+          console.log('Error happened during fetching!', err);
+        })
     );
   }
 
