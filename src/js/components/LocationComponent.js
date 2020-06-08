@@ -6,7 +6,7 @@ import ReactMapGL, { GeolocateControl, NavigationControl, Marker } from 'react-m
 function importAll(r) {
   r.keys().forEach(r);
 }
-importAll(require.context('../assets', true, /\.svg$/));
+importAll(require.context('../../assets', true, /\.svg$/));
 
 class LocationComponent extends Component {
   constructor(props) {
@@ -21,6 +21,8 @@ class LocationComponent extends Component {
         longitude: 27.5667,
         zoom: 8,
       },
+      timezoneName: '',
+      error: '',
     };
   }
 
@@ -40,7 +42,7 @@ class LocationComponent extends Component {
         });
       })
       .catch((err) => {
-        console.log('Error happened during fetching!', err);
+        throw new Error('Error happened during fetching!', err);
       });
   }
 
@@ -50,21 +52,37 @@ class LocationComponent extends Component {
   }
 
   showSearchResults(city) {
-    fetch(`https://api.opencagedata.com/geocode/v1/json?key=61c78d0a8ef5447485dc73627934d616&q=${city}&pretty=1`)
+    fetch(`https://api.opencagedata.com/geocode/v1/json?key=e5e8ed2435fc4fe88822361aab7a26ac&q=${city}&pretty=1`)
       .then((res) => res.json())
-      .then((json) => this.setState({
-        viewport: {
-          width: 290,
-          height: 420,
-          latitude: json.results[0].geometry.lat,
-          longitude: json.results[0].geometry.lng,
-          zoom: 8,
-        },
-        city: this.props.inputValue,
-      }))
+      .then((json) => {
+        this.checkErrors(json);
+        this.setState({
+          viewport: {
+            width: 290,
+            height: 420,
+            latitude: json.results[0].geometry.lat,
+            longitude: json.results[0].geometry.lng,
+            zoom: 8,
+          },
+          city: this.props.inputValue,
+          timezoneName: json.results[0].annotations.timezone.name,
+        });
+        this.props.updateTimeZoneName(json.results[0].annotations.timezone.name);
+      })
       .catch((err) => {
-        console.log('Error happened during fetching!', err);
+        throw new Error('Error happened during fetching!', err);
       });
+
+    this.interval = setInterval(() => this.setState({ error: '' }), 8000);
+  }
+
+  checkErrors(response) {
+    if (response.total_results === 0) {
+      this.setState({
+        error: 'No results',
+      });
+      throw Error(response.message);
+    }
   }
 
   toNormalView(num) {
@@ -80,6 +98,7 @@ class LocationComponent extends Component {
     return (
       <>
       <div className="location-block">
+        <h5 className='no-results'>{this.state.error.length > 0 ? this.state.error : '' }</h5>
         <ReactMapGL
         style={{ margin: '0 auto', borderRadius: '7%' }}
         {...this.state.viewport}
@@ -99,7 +118,6 @@ class LocationComponent extends Component {
           <img src='images/location.svg' alt='Location Icon'></img>
         </Marker>
         </ReactMapGL>
-        {/* <Image src="images/test-map.png" fluid/> */}
         <p className="coordinates">Latitude: {this.toNormalView(this.state.viewport.latitude)}, Longitude: {this.toNormalView(this.state.viewport.longitude)}</p>
       </div>
       </>

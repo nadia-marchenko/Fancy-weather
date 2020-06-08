@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>ControlBlock --- Snapshot +++capturing Snapshot of ControlBlock 1`] = `
+<div
+  className="control-block"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-lg-4 col-md-6 col-12"
+      >
+        <div
+          className="main-buttons"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Update
+          </button>
+           
+          <div
+            className="dropdown btn-group"
+            onKeyDown={[Function]}
+            role="group"
+          >
+            <button
+              aria-expanded={false}
+              aria-haspopup={true}
+              className="dropdown-toggle btn btn-outline-secondary"
+              disabled={false}
+              id="dropdown-variants-Secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              LAN
+            </button>
+          </div>
+          <div
+            className="temperature-change-buttons dropdown btn-group"
+            onKeyDown={[Function]}
+            role="group"
+            variant="outline-secondary"
+          >
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              °C
+            </button>
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              °F
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-lg-4 col-md-6 col-12 offset-lg-4"
+      >
+        <div
+          className="search-block"
+        >
+          <form
+            className=""
+          >
+            <div
+              className="mb-3 input-group"
+              onChange={[Function]}
+              value=""
+            >
+              <input
+                aria-describedby="basic-addon2"
+                aria-label="Search"
+                className="form-control"
+                placeholder="Search"
+                type="search"
+              />
+              <button
+                className="btn btn-outline-secondary"
+                disabled={false}
+                onClick={[Function]}
+                type="submit"
+              >
+                Search
+              </button>
+               
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`>>>ControlBlock --- Snapshot +++capturing Snapshot of TodayWeather 1`] = `
+<div
+  className="control-block"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-lg-4 col-md-6 col-12"
+      >
+        <div
+          className="main-buttons"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Update
+          </button>
+           
+          <div
+            className="dropdown btn-group"
+            onKeyDown={[Function]}
+            role="group"
+          >
+            <button
+              aria-expanded={false}
+              aria-haspopup={true}
+              className="dropdown-toggle btn btn-outline-secondary"
+              disabled={false}
+              id="dropdown-variants-Secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              LAN
+            </button>
+          </div>
+          <div
+            className="temperature-change-buttons dropdown btn-group"
+            onKeyDown={[Function]}
+            role="group"
+            variant="outline-secondary"
+          >
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              °C
+            </button>
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              °F
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-lg-4 col-md-6 col-12 offset-lg-4"
+      >
+        <div
+          className="search-block"
+        >
+          <form
+            className=""
+          >
+            <div
+              className="mb-3 input-group"
+              onChange={[Function]}
+              value=""
+            >
+              <input
+                aria-describedby="basic-addon2"
+                aria-label="Search"
+                className="form-control"
+                placeholder="Search"
+                type="search"
+              />
+              <button
+                className="btn btn-outline-secondary"
+                disabled={false}
+                onClick={[Function]}
+                type="submit"
+              >
+                Search
+              </button>
+               
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

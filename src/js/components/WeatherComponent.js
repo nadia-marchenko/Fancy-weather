@@ -5,14 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import WeatherIcon from 'react-icons-weather';
 /* eslint-enable no-unused-vars */
-import * as CountryNames from '../CountryNameLongForm.json';
-// Import images
-function importAll(r) {
-  r.keys().forEach(r);
-}
-importAll(require.context('../assets', true, /\.svg$/));
+import * as CountryNames from '../../CountryNameLongForm.json';
 
-class TodayWeather extends Component {
+class WeatherComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +18,7 @@ class TodayWeather extends Component {
       feelsLikeWeather: '0',
       humidity: '0',
       wind: '0',
-      summary: 'Default',
+      weatherSummary: 'Default',
       img: '200',
       firstDayForecast: this.nextDay(1),
       secondDayForecast: this.nextDay(2),
@@ -43,7 +38,6 @@ class TodayWeather extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ city: nextProps.inputValue });
-    // this.getCountryName(nextProps.inputValue);
     this.getWeatherData(nextProps.inputValue);
   }
 
@@ -72,7 +66,7 @@ class TodayWeather extends Component {
         feelsLikeWeather: Math.ceil(weatherResponse.list[0].main.feels_like),
         humidity: weatherResponse.list[0].main.humidity,
         wind: weatherResponse.list[0].wind.speed,
-        summary: weatherResponse.list[0].weather[0].main,
+        weatherSummary: weatherResponse.list[0].weather[0].main,
         img: weatherResponse.list[0].weather[0].id,
         firstDayForecastWeather: this.averageWeather(weatherResponse, this.state.firstDayForecast),
         secondDayForecastWeather: this.averageWeather(weatherResponse,
@@ -111,7 +105,14 @@ class TodayWeather extends Component {
 
   render() {
     const optionsForDate = {
-      weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false,
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+      timeZone: this.props.timeZone,
     };
     const farengeitNowDegree = this.toFarengeit(this.state.celsiumNowDegree);
     const farengeitFirstDayForecat = this.toFarengeit(this.state.firstDayForecastWeather);
@@ -132,7 +133,7 @@ class TodayWeather extends Component {
               <span></span>
               <div className="content">
                 <WeatherIcon name="owm" className='icon-weather icon' iconId={this.state.img.toString()} flip="horizontal" rotate="90" fixedWidth={true}/>
-                <h5 className="text-weather">{this.state.summary}</h5>
+                <h5 className="text-weather">{this.state.weatherSummary}</h5>
                 <p className="weather-degree">{ this.props.degreeType === 'celsium' ? `${this.state.celsiumNowDegree}°C` : `${farengeitNowDegree}°F`}</p>
                 <p className="feels-like-weather">LIKE: { this.props.degreeType === 'celsium' ? `${this.state.feelsLikeWeather}°C` : `${farengeitFeelsLikeWeather}°F`}</p>
                 <p className="humidity">Humidity: {this.state.humidity}%</p>
@@ -172,4 +173,4 @@ class TodayWeather extends Component {
   }
 }
 
-export default TodayWeather;
+export default WeatherComponent;
